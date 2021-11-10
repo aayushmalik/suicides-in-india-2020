@@ -60,7 +60,7 @@ if choice == "All India":
     top_10_states_fig = px.bar(
         top_10_states,
         orientation = 'h',
-        title = 'Top 10 States of Suicides in India in 2020',
+        title = 'Top 10 States with Suicides in India in 2020',
         labels = {
             "value": "Total Cases",
             "variable": "Total Cases"
