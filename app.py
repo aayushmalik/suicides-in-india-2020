@@ -3,6 +3,8 @@ import pandas as pd
 import geopandas as gpd
 import plotly.express as px
 
+st.set_page_config(page_title = "Suicides in India")
+
 df = pd.read_excel("cause-of-suicide-Table 2.5 state-ut-city.xlsx", sheet_name = "Sheet1")
 
 df['Total'] = df['Male'] + df['Female']
