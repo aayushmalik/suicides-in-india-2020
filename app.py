@@ -24,8 +24,8 @@ india.rename(columns = {
     "Name": "State"
 }, inplace = True)
 
-india['State'] = india['State'].str.capitalize()
-df['State'] = df['State'].str.capitalize()
+india['State'] = india['State'].str.title()
+df['State'] = df['State'].str.title()
 states = sorted(set(df['State']))
 causes = sorted(set(df['Cause']))
 
