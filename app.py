@@ -8,8 +8,6 @@ st.set_page_config(page_title = "Suicides in India")
 df = pd.read_excel("cause-of-suicide-Table 2.5 state-ut-city.xlsx", sheet_name = "Sheet1")
 
 df['Total'] = df['Male'] + df['Female']
-states = sorted(set(df['State']))
-causes = sorted(set(df['Cause']))
 
 india = gpd.read_file("./India_State_Boundary.shp")
 
@@ -31,6 +29,9 @@ df['State'] = df['State'].str.capitalize()
 
 geo_df = india.merge(df, on = "State").set_index("State")
 
+states = sorted(set(geo_df['State']))
+causes = sorted(set(geo_df['Cause']))
+
 with st.sidebar:
     st.title("India Suicides Data 2020")
 
@@ -40,21 +41,6 @@ with st.sidebar:
 
 if choice == "All India":
     st.header("All India Level")
-
-    # all_india_fig = px.choropleth(
-    #     geo_df,
-    #     geojson = geo_df.geometry,
-    #     locations = geo_df.index,
-    #     color = "Total",
-    #     projection = 'mercator',
-    #     height = 600,
-    #     width = 600
-    # )
-
-    # all_india_fig.update_geos(fitbounds = "locations", visible=True)
-
-    # st.subheader("Chart showing the total number of suicides")
-    # st.plotly_chart(all_india_fig, use_container_width=True)
 
     top_10_states = df.groupby('State')['Total'].sum().nlargest(10).sort_values(ascending = True)
     top_10_states_fig = px.bar(
