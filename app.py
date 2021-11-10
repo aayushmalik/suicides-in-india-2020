@@ -26,13 +26,13 @@ india.rename(columns = {
     "Name": "State"
 }, inplace = True)
 
-# india['State'] = india['State'].str.capitalize()
-# df['State'] = df['State'].str.capitalize()
+india['State'] = india['State'].str.capitalize()
+df['State'] = df['State'].str.capitalize()
 
 geo_df = india.merge(df, on = "State").set_index("State")
 
-states = sorted(set(geo_df['State']))
-causes = sorted(set(geo_df['Cause']))
+# states = sorted(set(geo_df['State']))
+# causes = sorted(set(geo_df['Cause']))
 
 with st.sidebar:
     st.title("India Suicides Data 2020")
