@@ -8,8 +8,8 @@ st.set_page_config(page_title = "Suicides in India")
 df = pd.read_excel("cause-of-suicide-Table 2.5 state-ut-city.xlsx", sheet_name = "Sheet1")
 
 df['Total'] = df['Male'] + df['Female']
-states = sorted(set(geo_df['State']))
-causes = sorted(set(geo_df['Cause']))
+states = sorted(set(df['State']))
+causes = sorted(set(df['Cause']))
 
 india = gpd.read_file("./India_State_Boundary.shp")
 
@@ -26,8 +26,8 @@ india.rename(columns = {
     "Name": "State"
 }, inplace = True)
 
-india['State'] = india['State'].str.capitalize()
-df['State'] = df['State'].str.capitalize()
+# india['State'] = india['State'].str.capitalize()
+# df['State'] = df['State'].str.capitalize()
 
 geo_df = india.merge(df, on = "State").set_index("State")
 
